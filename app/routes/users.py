@@ -36,9 +36,9 @@ def get_all_users(current_user: dict = Depends(get_current_user)):
     users = list(users_collection.find({}, {"password": 0}))
     return [UserSchema(**user) for user in users]
 
-@router.delete("/users/{email}")
-def delete_user(email: str, current_user: dict = Depends(get_current_user)):
-    result = users_collection.delete_one({"e_email": email})
-    if result.deleted_count == 0:
-        raise HTTPException(status_code=404, detail="User not found")
-    return {"message": "User deleted successfully"}
+# @router.delete("/users/{email}")
+# def delete_user(email: str, current_user: dict = Depends(get_current_user)):
+#     result = users_collection.delete_one({"e_email": email})
+#     if result.deleted_count == 0:
+#         raise HTTPException(status_code=404, detail="User not found")
+#     return {"message": "User deleted successfully"}
